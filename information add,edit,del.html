@@ -1,0 +1,97 @@
+<html>
+<title>STUDENT DETAILS</title>
+<style>
+  
+</style>
+<body>
+  NAME   :<input type="text" id="name"><br>
+  GENDER :<input type="text" id="gender"><br>
+  AREA   :<input type="text" id="area"><br>
+  PINCODE:<input type="text" id="pincode"><br>
+
+  <button id="save" onclick="onSave()">SAVE</button><br>
+
+  EDIT:<input type="text" id="textedit"><br>
+  <button id="edit" onclick="onEdit()">EDIT</button>
+  <button id="deletebtn" onclick="ondelete()">DELETE</button>
+
+
+  <script>
+    var arr = [];
+    var pos = -1;
+    var Name = document.getElementById('name');
+    var Gender = document.getElementById('gender');
+    var Area = document.getElementById('area');
+    var Pincode = document.getElementById('pincode');
+    var EditField = document.getElementById('textedit');
+    var deletefield = document.getElementById('deletebtn');
+
+    function onSave() {
+      if (Name.value && Gender.value && Area.value && Pincode.value) {
+        if (pos >= 0) {
+          arr[pos].name = Name.value;
+          arr[pos].gender = Gender.value;
+          arr[pos].area = Area.value;
+          arr[pos].pincode = Pincode.value;
+          EditField.value = '';
+          pos = -1;
+        } else {
+          var obj = { name: Name.value, gender: Gender.value, area: Area.value, pincode: Pincode.value };
+          arr.push(obj);
+        }
+
+        Name.value = ''
+        Gender.value = ''
+        Area.value = ''
+        Pincode.value = ''
+        console.log(arr);
+        return true;
+      }
+
+      if (!Name.value && !Gender.value && !Area.value && !Pincode.value) {
+        alert("fill required fields");
+      } else {
+        var emptyFieldsName = '';
+        if (!Name.value) {
+          emptyFieldsName = emptyFieldsName + ' name '
+        }
+        if (!Gender.value) {
+          emptyFieldsName = emptyFieldsName + ' gender '
+        }
+        if (!Area.value) {
+          emptyFieldsName = emptyFieldsName + ' area '
+        }
+        if (!Pincode.value) {
+          emptyFieldsName = emptyFieldsName + ' pincode '
+        }
+        if (emptyFieldsName !== '') {
+          emptyFieldsName = 'Please enter ' + emptyFieldsName + 'details';
+          alert(emptyFieldsName);
+        }
+      }
+
+
+
+    }
+    function onEdit() {
+      pos = EditField.value && (parseInt(EditField.value) - 1);
+      Name.value = arr[pos].name;
+      Gender.value = arr[pos].gender;
+      Area.value = arr[pos].area;
+      Pincode.value = arr[pos].pincode;
+    }
+    function ondelete() {
+      pos = EditField.value && (parseInt(EditField.value) - 1);
+      arr.splice(pos, 1)
+      console.log(arr);
+
+
+    }
+
+
+
+  </script>
+
+</body>
+
+</html>

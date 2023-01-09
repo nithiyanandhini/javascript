@@ -1,0 +1,52 @@
+<html>
+<title>calc</title>
+<body>
+   input1:<input type='text' id='ip1' ><br>
+   input2:<input type='text' id='ip2' ><br><br>
+   
+  <button id="add" onclick="arithmeticaction('add')">+</button>
+  <button id="sub" onclick="arithmeticaction('sub')">-</button>
+  <button id="mul"  onclick="arithmeticaction('mul')">*</button>
+  <button id="div"  onclick="arithmeticaction('div')">/</button><br><br>
+  
+  output:<input type='text' id='op' >
+
+<script>
+   function arithmeticaction(actionname){
+       var ip1=parseInt(document.getElementById("ip1").value);
+       var ip2=parseInt(document.getElementById("ip2").value);
+       var op=null;
+ switch(actionname){
+    case 'add':   
+          op=ip1+ip2;
+          break;
+    case 'sub':
+       if(ip1>=ip2){
+          op=ip1-ip2;
+          }
+       else{
+          op=ip2-ip1;
+          }
+          break;
+    case 'mul':
+          op=ip1*ip2;
+          break;
+    case 'div':
+       if(ip1>ip2){
+          op=ip1/ip2;
+          }
+       else{
+          op=ip2/ip1;
+          }
+          break;
+   default:
+          break;
+ }   
+ document.getElementById("op").value=op;
+ console.log(op);
+} 
+    
+</script>  
+</body>
+
+</html>
